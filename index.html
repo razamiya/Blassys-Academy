@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blassys Academy – Homepage design (v15)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#041759;--ink-2:#3A4A78;--deep:#001C4A;--deep-2:#0A2A63;--yellow:#FEB502;--on-yellow:#041759;--blue:#024CC1;--blue-2:#0551FD;
+  --bg:#FFFFFF;--soft:#F3F8FE;--ice:#E4EFFC;--line:#DCE5F2;--card:#FFFFFF;--tag-live:#E4EFFC;--tag-live-ink:#024CC1;--live:#E0413A;
+  --on-deep:#FFFFFF;--on-deep-2:#BFCDEB;--shadow:0 18px 44px rgba(4,23,89,.12);--shadow-sm:0 8px 24px rgba(4,23,89,.08);
+  --display:"Bricolage Grotesque","Segoe UI",Roboto,Helvetica,Arial,sans-serif;--sans:"Figtree","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#E8EEFB;--ink-2:#AEBCDD;--deep:#081B42;--deep-2:#10295C;--blue:#6AA5FF;--blue-2:#8AB8FF;
+  --bg:#06122B;--soft:#0B1B3D;--ice:#11274F;--line:#1F3566;--card:#0D1F45;--tag-live:#153469;--tag-live-ink:#9CC2FF;--shadow:0 18px 44px rgba(0,0,0,.4);--shadow-sm:0 8px 24px rgba(0,0,0,.3);}}
+:root[data-theme="dark"]{
+  --ink:#E8EEFB;--ink-2:#AEBCDD;--deep:#081B42;--deep-2:#10295C;--blue:#6AA5FF;--blue-2:#8AB8FF;
+  --bg:#06122B;--soft:#0B1B3D;--ice:#11274F;--line:#1F3566;--card:#0D1F45;--tag-live:#153469;--tag-live-ink:#9CC2FF;--shadow:0 18px 44px rgba(0,0,0,.4);--shadow-sm:0 8px 24px rgba(0,0,0,.3);}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 84px);-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans)}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue-2);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em;line-height:1.05}
+.ph{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;background:var(--ice)}
+.main-photo,.card-img,.slide-img,.frame,.video,.panel-img,.crow .th{position:relative;overflow:hidden}
+.ico{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.btn .ico{width:18px;height:18px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 15px/1 var(--sans);padding:15px 24px;border-radius:12px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;white-space:nowrap;transition:transform .15s,background .15s,border-color .15s}
+.btn:active{transform:translateY(1px)}
+.btn-y{background:var(--yellow);color:var(--on-yellow)}
+.btn-y:hover{background:#FFC53A}
+.btn-line{border-color:var(--line);color:var(--ink);background:var(--card)}
+.btn-line:hover{border-color:var(--blue)}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-blue:hover{filter:brightness(1.08)}
+.more{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-weight:700;text-decoration:none;font-size:15px;white-space:nowrap}
+.more:hover{text-decoration:underline;text-underline-offset:3px}
+
+header.site{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px);margin-top:calc(-1 * env(safe-area-inset-top,0px))}
+.hdr{display:flex;align-items:center;gap:28px;height:74px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.logo-text{display:inline-flex;flex-direction:column;align-items:stretch}
+.logo-name{font:800 22px/1 var(--display);letter-spacing:-.015em;white-space:nowrap}
+.logo-tag{display:block;font:700 10px/1 var(--sans);text-transform:uppercase;letter-spacing:.16em;color:var(--blue);margin-top:6px;white-space:nowrap}
+nav.main{display:flex;gap:2px}
+nav.main a{text-decoration:none;font-weight:600;font-size:15px;padding:9px 12px;border-radius:10px;color:var(--ink-2)}
+nav.main a:hover{background:var(--soft);color:var(--ink)}
+nav.main a[aria-current="page"]{color:var(--ink);background:var(--soft)}
+.tools{margin-left:auto;display:flex;align-items:center;gap:6px}
+.ibtn{position:relative;background:none;border:0;color:var(--ink-2);cursor:pointer;padding:9px;border-radius:10px;display:grid;place-items:center;text-decoration:none}
+.ibtn:hover{background:var(--soft);color:var(--ink)}
+.gt{display:flex;align-items:center;gap:5px;font:700 13.5px var(--sans);color:var(--ink-2);padding:8px 10px;border-radius:10px;border:1px solid var(--line)}
+.gt select{font:inherit;color:inherit;background:transparent;border:0;cursor:pointer;padding:0}
+.gt select option{color:#041759}
+.signin{font-weight:700;font-size:15px;text-decoration:none;padding:9px 12px;border-radius:10px;margin-left:4px}
+.signin:hover{background:var(--soft)}
+.tools .btn{padding:12px 18px;font-size:14.5px}
+.menu-btn{display:none}
+
+.hero{position:relative;background:var(--soft);padding:56px 0 132px;overflow:hidden}
+.dots{position:absolute;width:120px;height:90px;background-image:radial-gradient(var(--blue) 1.6px,transparent 1.6px);background-size:14px 14px;opacity:.18}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero-grid>*,.web-grid>*{min-width:0}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-weight:700;color:var(--blue);font-size:15px;margin:0 0 18px}
+.kicker::before{content:"";width:28px;height:3px;border-radius:2px;background:var(--yellow)}
+.hero h1{font-size:clamp(40px,4.7vw,68px);font-weight:800;min-height:2.1em}
+.hero h1 .w{display:inline-block;transition:opacity .35s ease,transform .35s ease}
+.hero h1 .l1{display:block;white-space:nowrap}
+.hero h1 .w1{display:block}
+.hero h1.swap .w{opacity:0;transform:translateY(12px)}
+.hero h1 .g{color:var(--blue)}
+.lede{font-size:19px;line-height:1.55;color:var(--ink-2);max-width:31em;margin:20px 0 26px}
+.lede strong{color:var(--ink);font-weight:700}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.quick{display:flex;flex-wrap:wrap;gap:6px 22px;list-style:none;margin:20px 0 0;padding:0}
+.quick a{display:inline-flex;align-items:center;gap:7px;font-size:14.5px;font-weight:600;color:var(--ink-2);text-decoration:none}
+.quick .ico{color:var(--blue)}
+.quick a:hover{color:var(--blue)}
+.try{margin-top:0}
+.try-label{font-size:14px;color:var(--ink-2);margin:0 0 10px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.chip{font:600 14px/1 var(--sans);padding:10px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.chip:hover{border-color:var(--blue)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.chip-more{font-size:14px;color:var(--ink-2);align-self:center;padding-left:4px}
+
+.visual{position:relative;max-width:470px;width:100%;margin-left:auto}
+.main-photo{border-radius:28px;aspect-ratio:4/4.4;box-shadow:var(--shadow)}
+.visual .try{margin-top:18px}
+.now{position:absolute;left:18px;bottom:20px;z-index:2;display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:12px;row-gap:12px;background:var(--card);color:var(--ink);border-radius:16px;padding:12px 18px 12px 12px;box-shadow:var(--shadow)}
+.now-ic{width:42px;height:42px;border-radius:12px;background:var(--yellow);color:#041759;display:grid;place-items:center;flex-shrink:0}
+.now small{display:block;font-size:12.5px;color:var(--ink-2);font-weight:600;line-height:1.2}
+.now b{display:block;font:800 18px/1.25 var(--display)}
+.flags{grid-column:1/-1;display:flex;align-items:center;gap:6px;padding-top:10px;border-top:1px solid var(--line)}
+.flags .flag{display:block;width:24px;height:16px;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.1)}
+.fmore{font-size:12.5px;font-weight:700;color:var(--ink-2);margin-left:4px;white-space:nowrap}
+.visual .chips{gap:6px}
+.visual .chip{padding:8px 12px;font-size:13.5px}
+.live-chip{position:absolute;right:16px;top:16px;display:flex;align-items:center;gap:8px;background:rgba(0,28,74,.82);color:#fff;border-radius:999px;padding:7px 12px 7px 8px;font-size:13px;font-weight:600}
+.pill-live{display:inline-flex;align-items:center;gap:6px;background:var(--live);color:#fff;font-weight:700;font-size:12px;padding:4px 9px;border-radius:999px}
+.pill-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#fff}
+.small-photo{position:absolute;z-index:2;left:0;top:0;width:210px;border-radius:20px;overflow:hidden;border:6px solid var(--card);box-shadow:var(--shadow);background:var(--card)}
+.small-photo .img{aspect-ratio:4/3}
+.small-photo span{display:block;padding:8px 10px 6px;font:700 13px var(--sans);color:var(--ink)}
+.caption{position:absolute;z-index:3;left:20px;bottom:18px;width:min(330px,82%);background:var(--card);color:var(--ink);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.cap-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12.5px;color:var(--ink-2);font-weight:600;margin-bottom:8px}
+.cap-head b{background:var(--tag-live);color:var(--tag-live-ink);padding:3px 9px;border-radius:999px;font-size:12px}
+.cap-row{display:grid;grid-template-columns:70px 1fr;gap:10px;font-size:14px;line-height:1.4;padding:3px 0}
+.cap-row span{font-size:11.5px;font-weight:700;color:var(--ink-2);padding-top:2px}
+.cap-row.you p{font-weight:700}
+.cap-row p{margin:0}
+
+.proof{position:relative;z-index:5;margin-top:-84px}
+.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 22px;box-shadow:var(--shadow-sm);display:flex;gap:14px;align-items:center}
+.pic{width:48px;height:48px;border-radius:14px;background:var(--ice);color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.pcard b{display:block;font:700 16.5px/1.25 var(--sans)}
+.pcard span{font-size:14px;color:var(--ink-2);line-height:1.4;display:block}
+.pstats{display:flex;gap:22px}
+.pstats b{font:800 28px/1 var(--display);letter-spacing:-.02em}
+.stack{display:flex;flex-shrink:0}
+.stack img{width:34px;height:34px;border-radius:50%;border:2.5px solid var(--card);margin-left:-10px;object-fit:cover}
+.stack img:first-child{margin-left:0}
+
+.sh{margin-bottom:26px}
+.sh-row{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.label{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--blue);font-size:14.5px;margin:0 0 10px}
+.label::before{content:"";width:22px;height:3px;border-radius:2px;background:var(--yellow)}
+.plabel::before{display:none}
+.sh h2{font-size:clamp(32px,3.4vw,44px)}
+.sh p{margin:10px 0 0;color:var(--ink-2);font-size:17px;max-width:36em}
+
+.featured{padding-top:80px}
+.slider{position:relative;background:var(--deep);color:var(--on-deep);border-radius:28px;overflow:hidden}
+.slide{display:none;grid-template-columns:1.1fr .9fr;min-height:400px}
+.slide.active{display:grid;animation:fadein .45s ease}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.slide-text{padding:52px 48px 92px 56px;display:flex;flex-direction:column;justify-content:center}
+.slide small{align-self:flex-start;background:var(--yellow);color:#041759;font-weight:700;font-size:13px;padding:6px 11px;border-radius:8px;margin-bottom:16px}
+.slide h2{font-size:clamp(30px,3.2vw,44px);color:#fff}
+.slide p{color:var(--on-deep-2);font-size:17px;margin:14px 0 26px;max-width:36em}
+.slide .btn{align-self:flex-start}
+.slide-meta{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.slide-meta span{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border-radius:999px;padding:6px 12px;font-size:14px;color:#fff}
+.slide-meta .ico{color:var(--yellow)}
+.slide-img{position:relative}
+.slide-img img{position:absolute;inset:0}
+.slide-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--deep) 0,rgba(0,28,74,0) 38%)}
+.sdate{position:absolute;right:24px;top:24px;z-index:1;background:#fff;color:#041759;border-radius:16px;padding:10px 16px;text-align:center;line-height:1.05;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+.sdate small{all:unset;display:block;font-size:12px;font-weight:700;color:#024CC1}
+.sdate b{font:800 30px var(--display)}
+.sl-ctrl{position:absolute;left:56px;right:24px;bottom:26px;display:flex;align-items:center;gap:14px;z-index:2}
+.sdots{display:flex;gap:8px}
+.sdots button{width:9px;height:9px;border-radius:5px;border:0;padding:0;background:rgba(255,255,255,.35);cursor:pointer;transition:width .25s}
+.sdots button[aria-current="true"]{width:28px;background:var(--yellow)}
+.arrows{margin-left:auto;display:flex;gap:8px}
+.arrows button{width:42px;height:42px;border-radius:50%;border:0;background:rgba(0,28,74,.7);color:#fff;cursor:pointer;display:grid;place-items:center}
+.arrows button:hover{background:var(--deep)}
+
+.sec{padding-top:96px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
+.web-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.card[hidden]{display:none}
+.card-img{position:relative;aspect-ratio:16/8.5;border-radius:21px 21px 0 0;overflow:hidden}
+.time{position:absolute;left:14px;top:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(0,28,74,.86);color:#fff;font:700 12.5px/1 var(--sans);padding:7px 10px;border-radius:999px}
+.cdate{position:absolute;right:18px;top:calc(100% - 30px);z-index:2;background:var(--yellow);color:#041759;border-radius:14px;width:58px;padding:7px 0;text-align:center;line-height:1.05;box-shadow:var(--shadow-sm)}
+.cdate b{display:block;font:800 22px var(--display)}
+.cdate small{font-size:11.5px;font-weight:700}
+.card-wrap{position:relative}
+.card-body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+.tag{align-self:flex-start;font:700 12.5px/1 var(--sans);padding:6px 10px;border-radius:999px;margin-bottom:10px}
+.t-live{background:var(--tag-live);color:var(--tag-live-ink)}
+.t-long{background:var(--yellow);color:#041759}
+.card h3{font-size:21px;line-height:1.15;margin-bottom:10px;padding-right:60px}
+.facts{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--ink-2);margin-bottom:16px}
+.facts span{display:inline-flex;align-items:center;gap:6px}
+.facts .ico{color:var(--blue)}
+.len{font-weight:700;color:var(--ink)}
+.card-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
+.price{font:800 20px var(--display)}
+.card-foot .btn{padding:11px 16px;font-size:14px;border-radius:10px}
+.graphic{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:20px 22px;color:#fff;overflow:hidden}
+.graphic.navy{background:var(--deep)}
+.graphic.blue{background:#024CC1}
+.graphic b{font:800 40px/1 var(--display);letter-spacing:-.02em}
+.graphic span{font-size:14.5px;color:#D8E3F7;margin-top:4px}
+.empty{display:none;grid-column:1/-1;border:1.5px dashed var(--line);border-radius:22px;padding:40px 28px;text-align:center;background:var(--soft)}
+.empty .pic{margin:0 auto 14px}
+.empty h3{font-size:22px;margin-bottom:6px}
+.empty p{margin:0 auto 18px;color:var(--ink-2);max-width:30em}
+.empty .ctas{justify-content:center}
+
+.events{background:var(--soft);border-radius:22px;padding:22px}
+.events-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:10px}
+.events h3{font-size:20px;white-space:nowrap}
+.ev{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--line);text-decoration:none}
+.ev:first-of-type{border-top:0}
+.ev:hover .ev-t{color:var(--blue)}
+.ev-d{text-align:center;line-height:1.05;padding:6px 0;background:var(--card);border-radius:12px;border:1px solid var(--line)}
+.ev-d small{display:block;font-size:11.5px;font-weight:700;color:var(--blue)}
+.ev-d b{font:800 21px var(--display)}
+.ev-t{font-weight:700;font-size:15.5px;display:block;margin-bottom:2px}
+.ev-m{font-size:13.5px;color:var(--ink-2)}
+.ev-m b{color:var(--ink)}
+.ev-empty{display:none;text-align:center;padding:24px 8px;color:var(--ink-2);font-size:15px}
+.no-events .ev,.no-events .card,.no-events .filters,.no-events .slider{display:none}
+.no-events .empty,.no-events .ev-empty,.no-events .slider-empty{display:block}
+.slider-empty{display:none;background:var(--deep);color:#fff;border-radius:28px;padding:56px;position:relative;overflow:hidden}
+.slider-empty h2{font-size:clamp(28px,3vw,40px);color:#fff;max-width:18em}
+.slider-empty p{color:var(--on-deep-2);font-size:17px;margin:12px 0 24px;max-width:34em}
+
+.course-list{border-top:1px solid var(--line)}
+.crow{display:grid;grid-template-columns:84px 76px minmax(0,1fr) 110px 100px auto;gap:18px;align-items:center;padding:14px 8px;border-bottom:1px solid var(--line);transition:background .15s}
+.crow:hover{background:var(--soft)}
+.crow .d{font:700 15px var(--sans);color:var(--ink-2)}
+.crow .th{width:76px;height:58px;border-radius:12px;overflow:hidden}
+.crow .t a{font:700 19px/1.25 var(--display);text-decoration:none;letter-spacing:-.01em}
+.crow .t a:hover{color:var(--blue)}
+.crow .t span{display:block;font-size:13.5px;color:var(--ink-2);margin-top:3px}
+.crow .l{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;color:var(--ink-2)}
+.crow .l .ico{color:var(--blue)}
+.crow .f{font:800 18px var(--display)}
+.crow .btn{padding:11px 16px;font-size:14px;border-radius:10px}
+.spotlight{margin-top:40px;background:var(--ice);border-radius:28px;display:grid;grid-template-columns:.95fr 1.05fr;gap:48px;align-items:center;padding:34px}
+.spot-img{position:relative}
+.spot-img .frame{border-radius:22px;overflow:hidden;aspect-ratio:4/3}
+.badge{position:absolute;left:-14px;bottom:-18px;background:var(--yellow);color:#041759;border-radius:18px;padding:14px 18px;box-shadow:var(--shadow)}
+.badge b{display:block;font:800 34px/1 var(--display)}
+.badge span{font-size:13.5px;font-weight:700}
+.spot-text h3{font-size:clamp(30px,3vw,42px);margin:0 0 10px}
+.spot-text p{margin:0 0 24px;color:var(--ink-2);font-size:17px;max-width:28em}
+.checks{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:10px}
+.checks li{display:flex;gap:10px;align-items:center;font-weight:600}
+.checks svg{color:var(--blue);flex-shrink:0}
+
+.impact{margin-top:104px;background:var(--deep);color:var(--on-deep);position:relative;overflow:hidden}
+.impact .dots{right:40px;top:40px;background-image:radial-gradient(#FEB502 1.6px,transparent 1.6px);opacity:.35}
+.impact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:center;padding-top:84px;padding-bottom:84px}
+.impact .label{color:var(--yellow)}
+.impact h2{font-size:clamp(34px,3.8vw,52px);color:#fff}
+.impact p{color:var(--on-deep-2);font-size:18px;margin:18px 0 28px;max-width:30em}
+.video{position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:var(--deep-2)}
+.video img{position:absolute;inset:0}
+.video-in{position:absolute;inset:0;display:grid;place-items:center}
+.vcap{margin-top:14px;display:flex;flex-direction:column;gap:2px}
+.vcap b{color:#fff;font-size:17px}
+.vcap span{color:var(--on-deep-2);font-size:14px}
+.play{width:76px;height:76px;border-radius:50%;background:var(--yellow);display:grid;place-items:center;color:#041759;border:0;cursor:pointer;box-shadow:0 0 0 10px rgba(254,181,2,.25)}
+.video b{color:#fff;font-size:18px;max-width:22em}
+.video span{color:var(--on-deep-2);font-size:14px}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding-top:96px;padding-bottom:96px}
+.panel{border-radius:28px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
+.panel.org{background:var(--soft)}
+.panel.bpp{background:var(--soft)}
+.panel-img{aspect-ratio:16/8;position:relative}
+.panel-body{padding:30px 34px 34px;display:flex;flex-direction:column;align-items:flex-start;flex:1}
+.panel-ic{margin-bottom:16px;background:var(--card)}
+.panel h2{font-size:clamp(28px,2.8vw,36px);margin:0 0 12px}
+.panel p{margin:0 0 20px;color:var(--ink-2);font-size:17px;max-width:30em}
+.segs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0;list-style:none}
+.segs li{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 14px 5px 5px;font-size:14px;font-weight:600}
+.segs li.plain{padding:7px 14px}
+.segs img{width:30px;height:30px;border-radius:50%;object-fit:cover}
+.panel-ctas{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:auto}
+
+footer.site{background:var(--deep);color:var(--on-deep-2)}
+.f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.1fr;gap:32px;padding:64px 0 40px}
+footer h3{font:700 15px var(--sans);color:#fff;margin:0 0 14px;letter-spacing:0}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:15px}
+footer a{text-decoration:none;color:var(--on-deep-2)}
+footer a:hover{color:#fff}
+.f-brand .logo-name{color:#fff}
+.f-brand .logo-tag{color:var(--yellow)}
+.quote{font:500 19px/1.4 var(--display);color:#fff;margin:22px 0 6px;max-width:20em}
+.social{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);color:#fff;margin-top:16px}
+.ci{display:flex;gap:10px;align-items:flex-start}
+.ci .ico{color:var(--yellow);margin-top:3px}
+.f-bottom{border-top:1px solid rgba(255,255,255,.12);padding:20px 0 26px;font-size:14px}
+
+@media (max-width:1180px){
+  .hdr{gap:18px}
+  nav.main a{padding:9px 8px}
+  .tools{gap:2px}
+}
+@media (max-width:1100px){
+  .hero-grid{grid-template-columns:1fr;gap:20px}
+  .hero h1{min-height:0}
+  .visual{margin:0 auto}
+  .proof-grid{grid-template-columns:repeat(2,1fr)}
+  .web-grid{grid-template-columns:1fr}
+  .crow{grid-template-columns:70px 76px minmax(0,1fr) 90px auto}
+  .crow .l{display:none}
+}
+@media (max-width:1080px){
+  nav.main,.tools .signin,.tools .cart{display:none}
+  .menu-btn{display:grid}
+  .hdr{position:relative}
+  nav.main.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 20px 18px;gap:2px}
+  nav.main .m-only{display:block}
+  .duo{grid-template-columns:1fr}
+  .impact-grid{grid-template-columns:1fr;gap:36px;padding-top:64px;padding-bottom:64px}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .slide{grid-template-columns:1fr;min-height:0}
+  .slide-img{order:-1;aspect-ratio:16/8}
+  .slide-img::after{background:linear-gradient(0deg,var(--deep) 0,rgba(0,28,74,0) 45%)}
+  .slide-text{padding:8px 36px 90px}
+  .sl-ctrl{left:36px;right:36px}
+  .spotlight{grid-template-columns:1fr;gap:36px;padding:26px}
+}
+nav.main .m-only{display:none}
+nav.main.open .m-gt{display:flex;align-self:flex-start;margin-top:8px}
+@media (max-width:640px){
+  .wrap{padding-left:18px;padding-right:18px}
+  .hdr{height:64px;gap:10px}
+  .logo-tag{display:none}
+  .logo-name{font-size:18px}
+  .logo svg{width:32px;height:29px}
+  .tools .search,.tools>.gt{display:none}
+  .tools .btn{padding:10px 12px;font-size:13.5px}
+  .hero{padding:36px 0 110px}
+  .lede{font-size:17px}
+  .visual{max-width:none}
+  .now{left:12px;bottom:12px}
+  .flags{gap:5px}.flags .flag{width:20px;height:14px}
+  .main-photo{aspect-ratio:4/3.6}
+  .small-photo{width:140px;border-width:4px}
+  .small-photo span{font-size:12px;padding:6px 8px 4px}
+  .collage::before{width:110px;height:110px;right:-10px}
+  .caption{left:0;bottom:10px;width:88%}
+  .proof{margin-top:-70px}
+  .proof-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .pcard{flex-direction:column;align-items:flex-start;padding:16px;gap:10px}
+  .pstats{gap:14px}.pstats b{font-size:24px}
+  .cards{grid-template-columns:1fr}
+  .crow{grid-template-columns:64px minmax(0,1fr);gap:4px 14px;padding:16px 4px}
+  .crow .d{grid-column:2;grid-row:1;font-size:13.5px}
+  .crow .th{grid-column:1;grid-row:1/span 3;width:64px;height:64px}
+  .crow .t,.crow .f{grid-column:2}
+  .crow .btn{grid-column:2;justify-self:start;margin-top:8px}
+  .slide-text{padding:4px 24px 88px}
+  .sl-ctrl{left:24px;right:24px}
+  .slider-empty{padding:36px 24px}
+  .panel-body{padding:24px}
+  .f-grid{grid-template-columns:1fr}
+  .impact-grid{padding-top:56px;padding-bottom:56px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+<script>
+function imgFb(img){var l=(img.getAttribute('data-fb')||'').split(' ').filter(Boolean);var n=l.shift();img.setAttribute('data-fb',l.join(' '));if(n){img.src=n;}else{img.onerror=null;img.style.visibility='hidden';}}
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M4 7h11v10H4zM15 10l5-3v10l-5-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="m8 12 3 3 5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 10h16M9 3v4M15 3v4" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></symbol>
+  <symbol id="i-translate" viewBox="0 0 24 24"><path d="M4 5h9M8.5 3v2M11 5c-.8 3.6-3.3 6.7-6.5 8.5M6.5 9.5c1.2 1.6 2.8 2.9 4.5 3.8"/><path d="m13 20 3.5-8 3.5 8M14.2 17.3h4.6"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h12a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H9l-4 3v-3H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><path d="M17 9h3a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-1v3l-3-3h-4"/></symbol>
+  <symbol id="i-teacher" viewBox="0 0 24 24"><circle cx="12" cy="7" r="3.5"/><path d="M5 20c.8-3.6 3.6-6 7-6s6.2 2.4 7 6"/><path d="m9.5 14 2.5 3 2.5-3"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.2 3-5.2 6-5.2s5.4 2 6 5.2"/><path d="M16 5.2a3 3 0 0 1 0 5.6M18 13.9c1.7.7 2.8 2.4 3 5.1"/></symbol>
+  <symbol id="i-world" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.5 1.5M10 2.5h4"/></symbol>
+  <symbol id="i-time" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-mappin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v16M15 9h4a1 1 0 0 1 1 1v11M3 21h18M8 8h3M8 12h3M8 16h3"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 13h18"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></symbol>
+</svg>
+
+<header class="site">
+  <div class="wrap hdr">
+    <a class="logo" href="#top" aria-label="Blassys Academy home">
+      <svg width="40" height="36" viewBox="0 0 46 40" aria-hidden="true"><path d="M23 9C17 4 9 3 3 5v29c6-2 14-1 20 4V9z" fill="#FEB502"/><path d="M23 9c6-5 14-6 20-4v29c-6-2-14-1-20 4V9z" fill="#024CC1"/></svg>
+      <span class="logo-text"><span class="logo-name">Blassys Academy</span><span class="logo-tag">Learn in your language</span></span>
+    </a>
+    <nav class="main" id="mainnav" aria-label="Main">
+      <a href="#top" aria-current="page">Home</a>
+      <a href="https://blassys.academy/all-courses/">Courses</a>
+      <a href="https://blassys.academy/events/">Live Events</a>
+      <a href="https://blassys.academy/our-market/">For Organizations</a>
+      <a href="https://blassys.academy/about/">About</a>
+      <a class="m-only" href="https://blassys.academy/wp-login.php">Sign In</a>
+      <label class="m-only gt m-gt"><svg width="17" height="17" aria-hidden="true"><use href="#i-globe"/></svg><select id="sitelang2" aria-label="Translate this page"><option value="en">English</option><option value="fr">Français</option><option value="es">Español</option><option value="ar">العربية</option><option value="pt">Português</option><option value="sw">Kiswahili</option><option value="yo">Yorùbá</option><option value="zh">中文</option></select></label>
+    </nav>
+    <div class="tools">
+      <label class="gt" title="Translate this page"><svg width="17" height="17" aria-hidden="true"><use href="#i-globe"/></svg><span class="sr">Language</span>
+        <select id="sitelang" aria-label="Translate this page"><option value="en">English</option><option value="fr">Français</option><option value="es">Español</option><option value="ar">العربية</option><option value="pt">Português</option><option value="sw">Kiswahili</option><option value="yo">Yorùbá</option><option value="zh">中文</option></select>
+      </label>
+      <button class="ibtn search" aria-label="Search courses"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <a class="signin" href="https://blassys.academy/wp-login.php">Sign In</a>
+      <a class="btn btn-y" href="https://blassys.academy/register/">Get Started</a>
+      <button class="ibtn menu-btn" id="menubtn" aria-label="Open menu" aria-expanded="false" aria-controls="mainnav"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker">Access is not the same as understanding.</p>
+      <h1 id="hero-title" aria-live="polite"><span class="w w1">Understand.</span><span class="l1"><span class="w">Apply.</span> <span class="w g">Grow.</span></span></h1>
+      <p class="lede">Professional learning designed to help people understand what they are learning, not simply gain access to information. <strong>Live teaching. Instant understanding.</strong></p>
+      <div class="ctas">
+        <a class="btn btn-y" href="https://blassys.academy/all-courses/">Explore Courses<svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-line" href="https://blassys.academy/our-market/">Partner With Us</a>
+      </div>
+      <ul class="quick" aria-label="Ways to learn">
+        <li><a href="https://blassys.academy/all-courses/"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-book"/></svg>Professional courses</a></li>
+        <li><a href="https://blassys.academy/events/"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-video"/></svg>Live webinars</a></li>
+        <li><a href="https://blassys.academy/about/"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-translate"/></svg>Multilingual learning</a></li>
+        <li><a href="https://blassys.academy/course-archieve/"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-file"/></svg>Self-paced resources</a></li>
+      </ul>
+    </div>
+
+    <div class="visual">
+      <div class="main-photo"><img class="ph" fetchpriority="high" src="https://images.pexels.com/photos/5908493/pexels-photo-5908493.jpeg?auto=compress&cs=tinysrgb&w=1200" data-fb="https://images.pexels.com/photos/5908493/pexels-photo-5908493.jpeg?auto=compress&cs=tinysrgb&w=1200&r=1 https://images.pexels.com/photos/5908494/pexels-photo-5908494.jpeg?auto=compress&cs=tinysrgb&w=1200 https://images.pexels.com/photos/5908772/pexels-photo-5908772.jpeg?auto=compress&cs=tinysrgb&w=1200" onerror="imgFb(this)" alt="A smiling learner with headphones taking an online class on her laptop"><div class="now" aria-live="polite"><span class="now-ic"><svg class="ico" width="22" height="22" aria-hidden="true"><use href="#i-translate"/></svg></span><span><small>Now learning in</small><b id="now-lang">English</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="proof" aria-label="Blassys Academy at a glance">
+  <div class="wrap proof-grid">
+    <div class="pcard"><div class="pic"><svg class="ico" width="22" height="22" aria-hidden="true"><use href="#i-chat"/></svg></div><div><b>Multiple languages</b><span>Study in the language you prefer.</span></div></div>
+    <div class="pcard"><div class="pic"><svg class="ico" width="22" height="22" aria-hidden="true"><use href="#i-teacher"/></svg></div><div><b>Expert instructors</b><span>Learn from teachers and professionals worldwide.</span></div></div>
+    <div class="pcard"><div class="pic"><svg class="ico" width="22" height="22" aria-hidden="true"><use href="#i-world"/></svg></div><div class="pstats"><div><b>50+</b><span>Languages</span></div><div><b>100+</b><span>Countries</span></div></div></div>
+    <div class="pcard"><div class="pic"><svg class="ico" width="22" height="22" aria-hidden="true"><use href="#i-users"/></svg></div><div><b>Thousands of learners</b><span>All subjects, one platform</span></div></div>
+  </div>
+</section>
+
+<section class="wrap featured" id="featured" aria-label="Featured events">
+  <div class="slider" id="slider" aria-roledescription="carousel">
+    <article class="slide active" aria-roledescription="slide" aria-label="1 of 3">
+      <div class="slide-text">
+        <small>Featured event</small>
+        <h2>Accounting for Non-Accounting Individuals</h2>
+        <div class="slide-meta"><span><svg class="ico" width="15" height="15" aria-hidden="true"><use href="#i-video"/></svg>Live online course</span><span><svg class="ico" width="15" height="15" aria-hidden="true"><use href="#i-time"/></svg>6:00 PM ET</span><span>Runs until Oct 5</span></div>
+        <p>Learn what accounting information is, how it is developed, how it is used, and what it means.</p>
+        <a class="btn btn-y" href="https://blassys.academy/event/accounting-for-non-accounting-individuals/">Register Now<svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="slide-img"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/6476254/pexels-photo-6476254.jpeg?auto=compress&cs=tinysrgb&w=1400" data-fb="https://images.pexels.com/photos/6476254/pexels-photo-6476254.jpeg?auto=compress&cs=tinysrgb&w=1400&r=1 https://images.pexels.com/photos/7693698/pexels-photo-7693698.jpeg?auto=compress&cs=tinysrgb&w=1400" onerror="imgFb(this)" alt="An instructor explaining accounting to two learners"><div class="sdate"><small>MAY</small><b>19</b></div></div>
+    </article>
+    <article class="slide" aria-roledescription="slide" aria-label="2 of 3">
+      <div class="slide-text">
+        <small>Featured event</small>
+        <h2>The Future of Multilingual Education</h2>
+        <div class="slide-meta"><span><svg class="ico" width="15" height="15" aria-hidden="true"><use href="#i-video"/></svg>Live webinar</span><span><svg class="ico" width="15" height="15" aria-hidden="true"><use href="#i-time"/></svg>10:00 AM ET</span><span><svg class="ico" width="15" height="15" aria-hidden="true"><use href="#i-timer"/></svg>60 min</span></div>
+        <p>Explore how language-inclusive learning creates opportunities around the world.</p>
+        <a class="btn btn-y" href="https://blassys.academy/events/">Register Now<svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="slide-img"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/6684534/pexels-photo-6684534.jpeg?auto=compress&cs=tinysrgb&w=1400" data-fb="https://images.pexels.com/photos/6684534/pexels-photo-6684534.jpeg?auto=compress&cs=tinysrgb&w=1400&r=1 https://images.pexels.com/photos/1367272/pexels-photo-1367272.jpeg?auto=compress&cs=tinysrgb&w=1400" onerror="imgFb(this)" alt="A group of smiling students"><div class="sdate"><small>OCT</small><b>22</b></div></div>
+    </article>
+    <article class="slide" aria-roledescription="slide" aria-label="3 of 3">
+      <div class="slide-text">
+        <small>Featured event</small>
+        <h2>Fraud Examination and the Role of AI</h2>
+        <div class="slide-meta"><span><svg class="ico" width="15" height="15" aria-hidden="true"><use href="#i-video"/></svg>Live webinar</span><span><svg class="ico" width="15" height="15" aria-hidden="true"><use href="#i-time"/></svg>1:00 PM ET</span><span>Free</span></div>
+        <p>See how AI tools help detect and prevent fraud, with practical examples for finance teams.</p>
+        <a class="btn btn-y" href="https://blassys.academy/courses/fraud-examination-and-the-role-of-ai/">Register Now<svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="slide-img"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/17483874/pexels-photo-17483874.png?auto=compress&cs=tinysrgb&w=1400" data-fb="https://images.pexels.com/photos/17483874/pexels-photo-17483874.png?auto=compress&cs=tinysrgb&w=1400&r=1 https://images.pexels.com/photos/17483873/pexels-photo-17483873.png?auto=compress&cs=tinysrgb&w=1400" onerror="imgFb(this)" alt="Abstract illustration of artificial intelligence"><div class="sdate"><small>NOV</small><b>05</b></div></div>
+    </article>
+    <div class="sl-ctrl">
+      <div class="sdots" role="group" aria-label="Choose event"></div>
+      <div class="arrows">
+        <button class="prev" aria-label="Previous event"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+        <button class="next" aria-label="Next event"><svg width="18" height="18" aria-hidden="true"><use href="#i-right"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="slider-empty">
+    <h2>New live sessions are being scheduled</h2>
+    <p>Browse our courses now, or check the calendar again soon for upcoming webinars and masterclasses.</p>
+    <div class="ctas"><a class="btn btn-y" href="https://blassys.academy/all-courses/">Explore Courses</a></div>
+  </div>
+</section>
+
+<section class="wrap sec" id="webinars" aria-labelledby="web-title">
+  <div class="sh sh-row">
+    <div><h2 id="web-title">Live Webinar</h2><p>Join expert instructors in real time. Learn. Ask. Engage. Understand.</p></div>
+    <a class="more" href="https://blassys.academy/events/">View all live events <svg width="16" height="16" aria-hidden="true"><use href="#i-right"/></svg></a>
+  </div>
+  <div class="web-grid">
+    <div class="cards" id="cards">
+      <article class="card" data-k="short">
+        <div class="card-wrap"><div class="card-img"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/5905713/pexels-photo-5905713.jpeg?auto=compress&cs=tinysrgb&w=900" data-fb="https://images.pexels.com/photos/5905713/pexels-photo-5905713.jpeg?auto=compress&cs=tinysrgb&w=900&r=1 https://images.pexels.com/photos/5905954/pexels-photo-5905954.jpeg?auto=compress&cs=tinysrgb&w=900 https://images.pexels.com/photos/5905751/pexels-photo-5905751.jpeg?auto=compress&cs=tinysrgb&w=900" onerror="imgFb(this)" alt=""><span class="time"><svg class="ico" width="14" height="14" aria-hidden="true"><use href="#i-time"/></svg>10:00 AM ET</span></div><div class="cdate"><b>22</b><small>OCT</small></div></div>
+        <div class="card-body"><span class="tag t-live">Live webinar</span><h3>The Future of Multilingual Education</h3>
+          <div class="facts"><span class="len"><svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-timer"/></svg>60 min</span><span><svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-translate"/></svg>English</span></div>
+          <div class="card-foot"><span class="price">Free</span><a class="btn btn-blue" href="https://blassys.academy/events/">Register Now</a></div></div>
+      </article>
+      <article class="card" data-k="long">
+        <div class="card-wrap"><div class="card-img"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/7876755/pexels-photo-7876755.jpeg?auto=compress&cs=tinysrgb&w=900" data-fb="https://images.pexels.com/photos/7876755/pexels-photo-7876755.jpeg?auto=compress&cs=tinysrgb&w=900&r=1 https://images.pexels.com/photos/7693698/pexels-photo-7693698.jpeg?auto=compress&cs=tinysrgb&w=900" onerror="imgFb(this)" alt=""><span class="time"><svg class="ico" width="14" height="14" aria-hidden="true"><use href="#i-time"/></svg>6:00 PM ET</span></div><div class="cdate"><b>03</b><small>NOV</small></div></div>
+        <div class="card-body"><span class="tag t-long">Masterclass</span><h3>Audit-Ready Accounting</h3>
+          <div class="facts"><span class="len"><svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-timer"/></svg>2 weeks, 4 sessions</span><span><svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-translate"/></svg>English</span></div>
+          <div class="card-foot"><span class="price">$24.99</span><a class="btn btn-blue" href="https://blassys.academy/courses/audit-ready-accounting/">Enroll Now</a></div></div>
+      </article>
+      <article class="card" data-k="short">
+        <div class="card-wrap"><div class="card-img"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/210990/pexels-photo-210990.jpeg?auto=compress&cs=tinysrgb&w=900" data-fb="https://images.pexels.com/photos/210990/pexels-photo-210990.jpeg?auto=compress&cs=tinysrgb&w=900&r=1 https://images.pexels.com/photos/6476254/pexels-photo-6476254.jpeg?auto=compress&cs=tinysrgb&w=900" onerror="imgFb(this)" alt=""><span class="time"><svg class="ico" width="14" height="14" aria-hidden="true"><use href="#i-time"/></svg>1:00 PM ET</span></div><div class="cdate"><b>29</b><small>OCT</small></div></div>
+        <div class="card-body"><span class="tag t-live">Live class</span><h3>ChatGPT for Accounting</h3>
+          <div class="facts"><span class="len"><svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-timer"/></svg>90 min</span><span><svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-translate"/></svg>English</span></div>
+          <div class="card-foot"><span class="price">Free</span><a class="btn btn-blue" href="https://blassys.academy/courses/chatgpt-for-accounting/">Join Live</a></div></div>
+      </article>
+      <article class="card" data-k="long">
+        <div class="card-wrap"><div class="card-img"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/7651804/pexels-photo-7651804.jpeg?auto=compress&cs=tinysrgb&w=900" data-fb="https://images.pexels.com/photos/7651804/pexels-photo-7651804.jpeg?auto=compress&cs=tinysrgb&w=900&r=1 https://images.pexels.com/photos/1367272/pexels-photo-1367272.jpeg?auto=compress&cs=tinysrgb&w=900" onerror="imgFb(this)" alt=""><span class="time"><svg class="ico" width="14" height="14" aria-hidden="true"><use href="#i-time"/></svg>10:00 AM ET</span></div><div class="cdate"><b>10</b><small>NOV</small></div></div>
+        <div class="card-body"><span class="tag t-long">Team training</span><h3>Ethics and Social Responsibilities</h3>
+          <div class="facts"><span class="len"><svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-timer"/></svg>2 weeks, 5 sessions</span><span><svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-translate"/></svg>English</span></div>
+          <div class="card-foot"><span class="price">$50</span><a class="btn btn-blue" href="https://blassys.academy/courses/ethics-and-social-responsibilities/">Enroll Now</a></div></div>
+      </article>
+      <div class="empty">
+        <div class="pic"><svg width="24" height="24" aria-hidden="true"><use href="#i-cal"/></svg></div>
+        <h3>No live webinars scheduled right now</h3>
+        <p>New sessions are added regularly. In the meantime, you can start a course at your own pace.</p>
+        <div class="ctas"><a class="btn btn-blue" href="https://blassys.academy/all-courses/">Browse Courses</a><a class="btn btn-line" href="https://blassys.academy/events/">View Calendar</a></div>
+      </div>
+    </div>
+
+    <aside class="events" aria-labelledby="ev-title">
+      <div class="events-head"><h3 id="ev-title" style="display:flex;align-items:center;gap:10px"><span class="pic" style="width:38px;height:38px;border-radius:12px;background:var(--yellow);color:#041759"><svg class="ico" width="20" height="20" aria-hidden="true"><use href="#i-calendar"/></svg></span>Upcoming Events</h3><a class="more" href="https://blassys.academy/events/" style="font-size:14px">View calendar</a></div>
+      <a class="ev" href="https://blassys.academy/events/"><div class="ev-d"><small>OCT</small><b>08</b></div><div><span class="ev-t">Global Learners Network</span><span class="ev-m">12:00 PM ET, 90 min, English. <b>Free</b></span></div></a>
+      <a class="ev" href="https://blassys.academy/events/"><div class="ev-d"><small>OCT</small><b>15</b></div><div><span class="ev-t">Communication Skills Mastery</span><span class="ev-m">10:00 AM ET, 60 min, English. <b>$19.99</b></span></div></a>
+      <a class="ev" href="https://blassys.academy/events/"><div class="ev-d"><small>OCT</small><b>27</b></div><div><span class="ev-t">The Role of AI in Education</span><span class="ev-m">1:00 PM ET, 60 min, English. <b>Free</b></span></div></a>
+      <a class="ev" href="https://blassys.academy/events/"><div class="ev-d"><small>NOV</small><b>01</b></div><div><span class="ev-t">Blassys Academy Open House</span><span class="ev-m">5:00 PM ET, 60 min, English. <b>Free</b></span></div></a>
+      <div class="ev-empty">No upcoming events yet. Check back soon.</div>
+    </aside>
+  </div>
+</section>
+
+<section class="wrap sec" id="courses" aria-labelledby="c-title">
+  <div class="sh sh-row">
+    <div><h2 id="c-title">Upcoming Courses</h2><p>Practical learning for real-world impact.</p></div>
+    <a class="more" href="https://blassys.academy/all-courses/">View all courses <svg width="16" height="16" aria-hidden="true"><use href="#i-right"/></svg></a>
+  </div>
+  <div class="course-list">
+    <div class="crow"><span class="d">Oct 12</span><div class="th"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/6476254/pexels-photo-6476254.jpeg?auto=compress&cs=tinysrgb&w=300" data-fb="https://images.pexels.com/photos/6476254/pexels-photo-6476254.jpeg?auto=compress&cs=tinysrgb&w=300&r=1 https://images.pexels.com/photos/210990/pexels-photo-210990.jpeg?auto=compress&cs=tinysrgb&w=300" onerror="imgFb(this)" alt=""></div><div class="t"><a href="https://blassys.academy/courses/accounting-for-non-financial-individuals/">Accounting for Non-Financial Individuals</a><span>Accounting and Business</span></div><span class="l"><svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-book"/></svg>6 lessons</span><span class="f">$400</span><a class="btn btn-line" href="https://blassys.academy/courses/accounting-for-non-financial-individuals/">Register</a></div>
+    <div class="crow"><span class="d">Oct 19</span><div class="th"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/7693698/pexels-photo-7693698.jpeg?auto=compress&cs=tinysrgb&w=300" data-fb="https://images.pexels.com/photos/7693698/pexels-photo-7693698.jpeg?auto=compress&cs=tinysrgb&w=300&r=1 https://images.pexels.com/photos/7876755/pexels-photo-7876755.jpeg?auto=compress&cs=tinysrgb&w=300" onerror="imgFb(this)" alt=""></div><div class="t"><a href="https://blassys.academy/courses/fundamentals-of-digital-marketing/">Fundamentals of Digital Marketing</a><span>Marketing and Promotion</span></div><span class="l"><svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-book"/></svg>15 lessons</span><span class="f">$255</span><a class="btn btn-line" href="https://blassys.academy/courses/fundamentals-of-digital-marketing/">Register</a></div>
+    <div class="crow"><span class="d">Oct 26</span><div class="th"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/17483874/pexels-photo-17483874.png?auto=compress&cs=tinysrgb&w=300" data-fb="https://images.pexels.com/photos/17483874/pexels-photo-17483874.png?auto=compress&cs=tinysrgb&w=300&r=1 https://images.pexels.com/photos/17483873/pexels-photo-17483873.png?auto=compress&cs=tinysrgb&w=300" onerror="imgFb(this)" alt=""></div><div class="t"><a href="https://blassys.academy/courses/fraud-examination-and-the-role-of-ai/">Fraud Examination and the Role of AI</a><span>Accounting and Business</span></div><span class="l"><svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-book"/></svg>11 lessons</span><span class="f">Free</span><a class="btn btn-line" href="https://blassys.academy/courses/fraud-examination-and-the-role-of-ai/">Register</a></div>
+    <div class="crow"><span class="d">Nov 2</span><div class="th"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/17485706/pexels-photo-17485706.png?auto=compress&cs=tinysrgb&w=300" data-fb="https://images.pexels.com/photos/17485706/pexels-photo-17485706.png?auto=compress&cs=tinysrgb&w=300&r=1 https://images.pexels.com/photos/17485707/pexels-photo-17485707.png?auto=compress&cs=tinysrgb&w=300" onerror="imgFb(this)" alt=""></div><div class="t"><a href="https://blassys.academy/courses/blockchain/">Blockchain</a><span>IT and Data Analytics</span></div><span class="l"><svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-book"/></svg>7 lessons</span><span class="f">$50</span><a class="btn btn-line" href="https://blassys.academy/courses/blockchain/">Register</a></div>
+    <div class="crow"><span class="d">Nov 9</span><div class="th"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/4050439/pexels-photo-4050439.jpeg?auto=compress&cs=tinysrgb&w=300" data-fb="https://images.pexels.com/photos/4050439/pexels-photo-4050439.jpeg?auto=compress&cs=tinysrgb&w=300&r=1 https://images.pexels.com/photos/5908494/pexels-photo-5908494.jpeg?auto=compress&cs=tinysrgb&w=300" onerror="imgFb(this)" alt=""></div><div class="t"><a href="https://blassys.academy/courses/intermediate-spanish-2-ya/">Intermediate Spanish 2</a><span>Language</span></div><span class="l"><svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-book"/></svg>3 lessons</span><span class="f">Free</span><a class="btn btn-line" href="https://blassys.academy/courses/intermediate-spanish-2-ya/">Register</a></div>
+  </div>
+
+  <div class="spotlight">
+    <div class="spot-img"><div class="frame"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/1367272/pexels-photo-1367272.jpeg?auto=compress&cs=tinysrgb&w=1200" data-fb="https://images.pexels.com/photos/1367272/pexels-photo-1367272.jpeg?auto=compress&cs=tinysrgb&w=1200&r=1 https://images.pexels.com/photos/1367276/pexels-photo-1367276.jpeg?auto=compress&cs=tinysrgb&w=1200" onerror="imgFb(this)" alt="An accounting instructor working with two business owners"></div><div class="badge"><b>6</b><span>lessons</span></div></div>
+    <div class="spot-text">
+      <p class="label">Featured program</p>
+      <h3>Accounting for Non-Accountants</h3>
+      <p>Understand the language of business.</p>
+      <a class="btn btn-y" href="https://blassys.academy/courses/accounting-for-non-financial-individuals/">Learn More<svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="impact" id="impact" aria-labelledby="imp-title">
+  <div class="wrap impact-grid">
+    <div>
+      
+      <h2 id="imp-title">A Global Impact</h2>
+      <p>We are building a world where understanding has no borders and opportunity is for everyone.</p>
+      <a class="btn btn-y" href="https://blassys.academy/about/">Our Impact<svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div>
+      <div class="video">
+        <img class="ph" loading="lazy" src="https://images.pexels.com/photos/5905756/pexels-photo-5905756.jpeg?auto=compress&cs=tinysrgb&w=1400" data-fb="https://images.pexels.com/photos/5905756/pexels-photo-5905756.jpeg?auto=compress&cs=tinysrgb&w=1400&r=1 https://images.pexels.com/photos/5905758/pexels-photo-5905758.jpeg?auto=compress&cs=tinysrgb&w=1400 https://images.pexels.com/photos/5905954/pexels-photo-5905954.jpeg?auto=compress&cs=tinysrgb&w=1400" onerror="imgFb(this)" alt="Video: a message about why multilingual learning matters">
+        <div class="video-in"><button class="play" aria-label="Play video (coming soon)"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button></div>
+      </div>
+      <div class="vcap"><b>Why no one should have to learn English to succeed</b><span>A message from Sandra Frempong, PhD, CPA</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap duo" id="partners" aria-label="Work with Blassys">
+  <div class="panel org">
+    <div class="panel-img"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/34046709/pexels-photo-34046709.jpeg?auto=compress&cs=tinysrgb&w=1200" data-fb="https://images.pexels.com/photos/34046709/pexels-photo-34046709.jpeg?auto=compress&cs=tinysrgb&w=1200&r=1 https://images.pexels.com/photos/7651804/pexels-photo-7651804.jpeg?auto=compress&cs=tinysrgb&w=1200" onerror="imgFb(this)" alt="A trainer leading a session for a company team"></div>
+    <div class="panel-body">
+      <div class="pic panel-ic"><svg class="ico" width="24" height="24" aria-hidden="true"><use href="#i-building"/></svg></div>
+      <h2>For Organizations</h2>
+      <p>Custom training, professional development and specialized programs for your team.</p>
+      <div class="panel-ctas"><a class="btn btn-y" href="https://blassys.academy/our-market/">Partner With Us<svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+    </div>
+  </div>
+  <div class="panel bpp">
+    <div class="panel-img"><img class="ph" loading="lazy" src="https://images.pexels.com/photos/1367276/pexels-photo-1367276.jpeg?auto=compress&cs=tinysrgb&w=1200" data-fb="https://images.pexels.com/photos/1367276/pexels-photo-1367276.jpeg?auto=compress&cs=tinysrgb&w=1200&r=1 https://images.pexels.com/photos/1367272/pexels-photo-1367272.jpeg?auto=compress&cs=tinysrgb&w=1200" onerror="imgFb(this)" alt="Accounting professionals meeting around a table"></div>
+    <div class="panel-body">
+      <div class="pic panel-ic"><svg class="ico" width="24" height="24" aria-hidden="true"><use href="#i-briefcase"/></svg></div>
+      <h2>Blassys Professional Partners</h2>
+      <p>Practical client education for CPA firms and professional organizations.</p>
+      <div class="panel-ctas"><a class="btn btn-y" href="#">Learn About BPP<svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="more" href="https://blassys.academy/price-and-plans/">See pricing plans</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <a class="logo" href="#top"><svg width="40" height="36" viewBox="0 0 46 40" aria-hidden="true"><path d="M23 9C17 4 9 3 3 5v29c6-2 14-1 20 4V9z" fill="#FEB502"/><path d="M23 9c6-5 14-6 20-4v29c-6-2-14-1-20 4V9z" fill="#5B9BFF"/></svg><span class="logo-text"><span class="logo-name">Blassys Academy</span><span class="logo-tag">Learn in your language</span></span></a>
+        <p class="quote">"An investment in knowledge pays the best interest."</p>
+        <span style="font-size:14px">Benjamin Franklin</span><br>
+        <a class="social" href="https://www.linkedin.com/company/blassys-academy/" aria-label="Blassys Academy on LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.5 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM3 9h3v12H3zM9 9h2.9v1.7h.1c.4-.8 1.4-1.9 3.1-1.9 3.3 0 3.9 2.2 3.9 5V21h-3v-6.3c0-1.5 0-3.4-2.1-3.4s-2.4 1.6-2.4 3.3V21H9z"/></svg></a>
+      </div>
+      <div><h3>Important links</h3><ul>
+        <li><a href="https://blassys.academy/about/">About Us</a></li>
+        <li><a href="https://blassys.academy/our-market/">Our Market</a></li>
+        <li><a href="https://blassys.academy/facilitators-instructors/">Our Facilitators</a></li>
+        <li><a href="https://blassys.academy/course-archieve/">Course Archive</a></li>
+        <li><a href="https://blassys.academy/blassys-academy-archive/">Blassys Academy Archive</a></li>
+        <li><a href="https://blassys.academy/terms-conditions/">Terms &amp; Conditions</a></li>
+        <li><a href="https://blassys.academy/privacy-policy-2/">Privacy Policy</a></li></ul></div>
+      <div><h3>Need some help?</h3><ul>
+        <li><a href="https://blassys.academy/frequently-asked-questions/">FAQs</a></li>
+        <li><a href="https://blassys.academy/contact/">Contact Us</a></li>
+        <li><a href="https://blassys.academy/careers/">Careers</a></li>
+        <li><a href="https://blassys.academy/price-and-plans/">Price &amp; Plans</a></li></ul></div>
+      <div><h3>Get in touch</h3><ul>
+        <li class="ci"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-mappin"/></svg><span>1 Haywood St, 4th Floor<br>The Collider<br>Asheville, NC 28801</span></li>
+        <li class="ci"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:info@blassys.academy">info@blassys.academy</a></li></ul></div>
+    </div>
+    <div class="f-bottom">Copyright © 2026. All rights reserved by Blassys Academy.</div>
+  </div>
+</footer>
+
+
+
+<script>
+(function(){
+  var T={
+    en:{h:["Understand.","Apply.","Grow."],c:"Assets are what your business owns.",n:"English",k:"EN"},
+    fr:{h:["Comprendre.","Appliquer.","Grandir."],c:"Les actifs sont ce que votre entreprise possède.",n:"Français",k:"FR"},
+    es:{h:["Comprender.","Aplicar.","Crecer."],c:"Los activos son lo que posee tu negocio.",n:"Español",k:"ES"},
+    ar:{h:["افهم.","طبّق.","انمُ."],c:"الأصول هي ما تملكه شركتك.",n:"العربية",k:"AR"},
+    pt:{h:["Compreender.","Aplicar.","Crescer."],c:"Ativos são o que sua empresa possui.",n:"Português",k:"PT"},
+    sw:{h:["Elewa.","Tumia.","Kua."],c:"Mali ni vitu ambavyo biashara yako inamiliki.",n:"Kiswahili",k:"SW"},
+    yo:{h:["Lóye.","Ṣàmúlò.","Dàgbà."],c:"Dúkìá ni ohun tí iṣẹ́ rẹ ní.",n:"Yorùbá",k:"YO"},
+    zh:{h:["理解。","应用。","成长。"],c:"资产是你的企业所拥有的东西。",n:"中文",k:"ZH"}
+  };
+  var h1=document.getElementById('hero-title'),words=h1.querySelectorAll('.w'),sel=document.getElementById('sitelang');
+  var langChips=[].slice.call(document.querySelectorAll('.chip[data-lang]'));
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cur='en';
+  function setLang(l){
+    if(!T[l]||l===cur)return;cur=l;var d=T[l];
+    langChips.forEach(function(c){c.setAttribute('aria-pressed',c.dataset.lang===l?'true':'false');});
+    sel.value=l;sel2.value=l;
+    function apply(){
+      words.forEach(function(w,i){w.textContent=d.h[i];});
+      var nl=document.getElementById('now-lang');if(nl){nl.textContent=d.n;nl.setAttribute('lang',l);}
+      h1.setAttribute('lang',l);h1.setAttribute('dir',l==='ar'?'rtl':'ltr');
+      
+      h1.classList.remove('swap');fit();
+    }
+    if(reduce){apply();return;}
+    h1.classList.add('swap');setTimeout(apply,300);
+  }
+  function textW(el){var r=document.createRange();r.selectNodeContents(el);return r.getBoundingClientRect().width;}
+  function fitLogos(){[].forEach.call(document.querySelectorAll('.logo-text'),function(b){var n=b.querySelector('.logo-name'),t=b.querySelector('.logo-tag');if(!n||!t||!t.offsetWidth)return;var c=t.textContent.length-1,ls=0;for(var k=0;k<3;k++){t.style.letterSpacing=ls+'px';t.style.marginRight=(-ls)+'px';var tw=textW(t)-ls;ls=Math.max(0,ls+(textW(n)-tw)/c);}t.style.letterSpacing=ls+'px';t.style.marginRight=(-ls)+'px';});}
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(fitLogos);}else{fitLogos();}
+  window.addEventListener('resize',fitLogos);
+  var l1=h1.querySelector('.l1');
+  function fit(){h1.style.fontSize='';var fs=parseFloat(getComputedStyle(h1).fontSize),n=0;while(l1.scrollWidth>h1.clientWidth&&fs>26&&n<40){fs-=2;h1.style.fontSize=fs+'px';n++;}}
+  window.addEventListener('resize',fit);
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(fit);}else{fit();}
+  langChips.forEach(function(c){c.addEventListener('click',function(){setLang(c.dataset.lang);});});
+  var sel2=document.getElementById('sitelang2');
+  sel.addEventListener('change',function(){setLang(sel.value);});
+  sel2.addEventListener('change',function(){setLang(sel2.value);});
+
+  var slider=document.getElementById('slider'),slides=[].slice.call(slider.querySelectorAll('.slide')),dw=slider.querySelector('.sdots'),si=0,timer;
+  slides.forEach(function(s,n){var b=document.createElement('button');b.setAttribute('aria-label','Show event '+(n+1));b.addEventListener('click',function(){go(n);restart();});dw.appendChild(b);});
+  var dots=[].slice.call(dw.children);
+  function go(n){si=(n+slides.length)%slides.length;slides.forEach(function(s,k){s.classList.toggle('active',k===si);s.setAttribute('aria-hidden',k===si?'false':'true');});dots.forEach(function(d,k){d.setAttribute('aria-current',k===si?'true':'false');});}
+  function restart(){if(reduce)return;clearInterval(timer);timer=setInterval(function(){go(si+1);},7000);}
+  slider.querySelector('.prev').addEventListener('click',function(){go(si-1);restart();});
+  slider.querySelector('.next').addEventListener('click',function(){go(si+1);restart();});
+  slider.addEventListener('mouseenter',function(){clearInterval(timer);});
+  slider.addEventListener('mouseleave',restart);
+  slider.addEventListener('focusin',function(){clearInterval(timer);});
+  go(0);restart();
+
+  var fChips=[].slice.call(document.querySelectorAll('.chip[data-f]')),cards=[].slice.call(document.querySelectorAll('#cards .card'));
+  fChips.forEach(function(c){c.addEventListener('click',function(){
+    var f=c.dataset.f;
+    fChips.forEach(function(x){x.setAttribute('aria-pressed',x===c?'true':'false');});
+    cards.forEach(function(k){k.hidden=!(f==='all'||k.dataset.k===f);});
+  });});
+
+  var mb=document.getElementById('menubtn'),nav=document.getElementById('mainnav');
+  mb.addEventListener('click',function(){var o=nav.classList.toggle('open');mb.setAttribute('aria-expanded',o?'true':'false');mb.setAttribute('aria-label',o?'Close menu':'Open menu');});
+  nav.addEventListener('click',function(e){if(e.target.tagName==='A'){nav.classList.remove('open');mb.setAttribute('aria-expanded','false');}});
+
+})();
+</script>
+</body>
+</html>
